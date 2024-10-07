@@ -22,3 +22,54 @@ How many months will it take him to pay off the car.  How much interest has he p
 He will have paid 21711.60 in interest
 """
 
+def initialDebt():
+  i = input("please enter just a number for your debt: ")
+  try:
+    i = float(i)
+  except:
+    i = initialDebt()
+  return i
+
+def annualRate():
+  r = input("please enter just a number for your anual rate: ")
+  try:
+    r = float(r)/100
+  except:
+    r = annualRate()
+  return r
+
+def mounthlyPayments():
+  p = input("please enter just a number for your mounthly payments: ")
+  try:
+    p = float(p)
+  except:
+    p = mounthlyPayments()
+  return p
+
+def main():
+    iDebt = input("Your initial investment: ")
+    try:
+        iDebt = float(iDebt)
+    except:
+        iDebt = initialDebt()
+    debt = iDebt
+    mPay = input("Your mounthly payments: ")
+    try:
+        mPay = float(mPay)
+    except:
+        mPay = mounthlyPayments()
+    aRate = input("Your annual interest rate as a percentage: ")
+    try:
+        aRate = float(aRate)/100
+    except:
+        aRate = annualRate()
+    mounths = 0
+    inPayed = 0
+    while debt > 0:
+       inPayed = debt*aRate + inPayed
+       debt = (debt*aRate + debt) - mPay
+       mounths = mounths + 1
+    print(f"You will pay off your ${iDebt} in {mounths} mounths and you will pay ${round(inPayed, 2)} in intrest")
+
+if __name__ == "__main__":
+  main()

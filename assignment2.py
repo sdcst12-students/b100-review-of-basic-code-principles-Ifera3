@@ -23,3 +23,50 @@ final balance: 1320.68
 
 """
 
+def initialInvestment():
+  i = input("please enter just a number for your initial investment: ")
+  try:
+    i = float(i)
+  except:
+    i = initialInvestment()
+  return i
+
+def annualRate():
+  r = input("please enter just a number for your anual rate: ")
+  try:
+    r = float(r)/100
+  except:
+    r = annualRate()
+  return r
+
+def investmentTime():
+  t = input("please enter just a intager for your investment time: ")
+  try:
+    t = int(t)
+  except:
+    t = annualRate()
+  return t
+
+def main():
+    iInvestment = input("Your initial investment: ")
+    try:
+        iInvestment = float(iInvestment)
+    except:
+        iInvestment = initialInvestment()
+    aRate = input("Your annual interest rate as a percentage: ")
+    try:
+        aRate = float(aRate)/100
+    except:
+        aRate = annualRate()
+    iTime = input(f"Your investment time in years: ")
+    try:
+        iTime = int(iTime)
+    except:
+        iTime = investmentTime()
+    erand = iInvestment*aRate + iInvestment
+    for i in range(iTime - 1):
+        erand = (erand + iInvestment)*aRate + erand + iInvestment
+    print(f"Your intrest earnd on your ${iInvestment} in {iTime} years at {aRate*100}% compunded yearly is ${erand}")
+
+if __name__ == "__main__":
+  main()
