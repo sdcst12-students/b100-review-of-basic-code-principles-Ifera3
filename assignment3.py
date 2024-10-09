@@ -23,16 +23,18 @@ rate: 5%
 final balance: 1320.68
 """
 def initialInvestment():
-  i = input("please enter just a number for your initial investment: ")
+  i = input("please enter just a number for your annual investment: ")
   try:
+    i = i.replace('$','')
     i = float(i)
   except:
     i = initialInvestment()
   return i
 
 def annualRate():
-  r = input("please enter just a number for your anual rate: ")
+  r = input("please enter just a number for your annual rate: ")
   try:
+    r = r.replace('%','')
     r = float(r)/100
   except:
     r = annualRate()
@@ -41,24 +43,30 @@ def annualRate():
 def investmentTime():
   t = input("please enter just a intager for your investment time: ")
   try:
+    t = t.replace('years','')
+    t = t.replace('Years','')
     t = int(t)
   except:
     t = annualRate()
   return t
 
 def main():
-    iInvestment = input("Your initial investment: ")
+    iInvestment = input("Your annual investment: ")
     try:
+        iInvestment = iInvestment.replace('$','')
         iInvestment = float(iInvestment)
     except:
         iInvestment = initialInvestment()
     aRate = input("Your annual interest rate as a percentage: ")
     try:
+        aRate = aRate.replace('%','')
         aRate = float(aRate)/100
     except:
         aRate = annualRate()
     iTime = input(f"Your investment time in years: ")
     try:
+        iTime = iTime.replace('years','')
+        iTime = iTime.replace('Years','')
         iTime = int(iTime)
     except:
         iTime = investmentTime()
@@ -67,7 +75,7 @@ def main():
     while i < iTime:
         erand = (erand + iInvestment)*aRate + erand + iInvestment
         i = i + 1
-    print(f"Your intrest earnd on your ${iInvestment} in {iTime} years at {aRate*100}% compunded yearly is ${erand}")
+    print(f"Your intrest earnd on your ${round(iInvestment, 2)} invested annualy in {iTime} years at {round(aRate*100,2)}% is ${round(erand, 2)}")
 
 if __name__ == "__main__":
   main()
